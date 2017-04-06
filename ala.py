@@ -17,7 +17,7 @@ ddata=pickle.load(file)
 majority=[]
 #print(ddata['s']['series']['data']['ALL'][0])
 for j in ddata['s']['series']['data']['ALL']:
-    if float(j['popularity'])>0.05:
+    if float(j['popularity'])>0.01:
         majority.append(j)
 print(majority)
 file=open('carddata','rb')
@@ -29,5 +29,5 @@ majority=sorted(majority,key=lambda card:float(card['popularity']))
 for p in majority:
     name=findnamebydbfid(p['dbf_id'],carddata['s'])
     print(name+"  "+p['popularity'])
-
+pickle.dump(majority,open('majority','wb'))
 print(len(majority))
